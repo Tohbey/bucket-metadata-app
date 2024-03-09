@@ -8,8 +8,6 @@ const objectNames = ["1324832.png", "1325062.jpeg", "1325724.png"]
 const response = {
     "studentName": "Fafowora Oluwatobiloba Kayode",
     "studentId": "S2331174",
-    "responseDate": new Date().toLocaleDateString(),
-    "responseTime": new Date().toLocaleTimeString()
 }
 
 const app = express();
@@ -43,6 +41,8 @@ app.get('/ofafow300/', async (req, res) => {
 
         const payload  = {
             ...response,
+            responseDate: new Date().toLocaleDateString(),
+            responseTime: new Date().toLocaleTimeString(),
             metaData: await Promise.all(metaDataPromises)
         }
         // Send response
@@ -66,6 +66,8 @@ app.get('/ofafow300/:objectId', async (req, res) => {
                 contentType: metadata.contentType,
                 fileSize: metadata.size,
                 createdDate: metadata.timeCreated,
+                responseDate: new Date().toLocaleDateString(),
+                responseTime: new Date().toLocaleTimeString()
             }
 
             res.status(200).send(metaDataResponse).end();
